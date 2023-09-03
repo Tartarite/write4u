@@ -31,11 +31,6 @@ runs:
         unzip write-good.zip
       shell: bash
     
-    - name: See options
-    - run: |
-        echo "mdlint options ${{ inputs.markdown-options }}"
-        echo "vale-options ${{ inputs.vale-options }}"
-      shell: bash
     - name: Lint
       run: |
         npx jscpd --min-lines 3 --min-tokens 20 --threshold 0 --gitignore --ignore "**/*.yml"
