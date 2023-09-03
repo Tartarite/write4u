@@ -5,8 +5,8 @@ inputs:
     description: 'Options to use while linting markdown'
     required: false
     default: '--ignore vale'
-  vale-options:
-    description: 'Options for style-linting with vale'
+  known-words:
+    description: 'Filename with known spellings'
     required: false
 runs:
   using: "composite"
@@ -26,6 +26,9 @@ runs:
         cd -
         wget https://raw.githubusercontent.com/RaPaLearning/write4u/main/.vale.ini
         mkdir -p .github/styles/Vocab/Tooldoc
+        if [! -z "${{ inputs.known-words }}" ]; then
+          cat "${{ inputs.known-words }}" >> .github/styles/Vocab/Tooldoc/accept.txt
+        fi
         cd .github/styles/
         wget https://github.com/errata-ai/Microsoft/releases/latest/download/Microsoft.zip
         unzip Microsoft.zip
