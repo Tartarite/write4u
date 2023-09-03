@@ -26,7 +26,7 @@ runs:
         cd -
         wget https://raw.githubusercontent.com/RaPaLearning/write4u/main/.vale.ini
         mkdir -p .github/styles/Vocab/Tooldoc
-        if [! -z "${{ inputs.known-words }}" ]; then
+        if [ ! -z "${{ inputs.known-words }}" ]; then
           cat "${{ inputs.known-words }}" >> .github/styles/Vocab/Tooldoc/accept.txt
         fi
         cd .github/styles/
