@@ -25,7 +25,7 @@ runs:
         ./vale -v
         cd -
         wget https://raw.githubusercontent.com/RaPaLearning/write4u/main/.vale.ini
-        mkdir -p .github/styles/
+        mkdir -p .github/styles/Vocab/Tooldoc
         cd .github/styles/
         wget https://github.com/errata-ai/Microsoft/releases/latest/download/Microsoft.zip
         unzip Microsoft.zip
