@@ -11,9 +11,37 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Setup npm
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18.x
+    - name: Setup linters
+      run: |
+        npm install -g jscpd markdownlint-cli markdown-link-check
+        mkdir vale
+        cd vale
+        wget https://github.com/errata-ai/vale/releases/download/v2.15.2/vale_2.15.2_Linux_64-bit.tar.gz
+        tar -xf 'vale_2.15.2_Linux_64-bit.tar.gz'
+        ./vale -v
+        cd -
+        cd .github/styles/
+        wget https://github.com/errata-ai/Microsoft/releases/latest/download/Microsoft.zip
+        unzip Microsoft.zip
+        wget https://github.com/errata-ai/write-good/releases/latest/download/write-good.zip
+        unzip write-good.zip
+      shell: bash
+    
+    - name: See options
     - run: |
         echo "mdlint options ${{ inputs.markdown-options }}"
         echo "vale-options ${{ inputs.vale-options }}"
-      shell: bash
-    - run: bash setup-styles.sh
-      shell: bash
+    - name: Lint
+      run: |
+        npx jscpd --min-lines 3 --min-tokens 20 --threshold 0 --gitignore --ignore "**/*.yml"
+        markdownlint --ignore vale --fix .
+        markdown-link-check *.md
+        # this will only check md files in the current directory.
+        # because vale cannot ignore folders yet... and the vale README isn't compliant :)
+        vale/vale *.md
+        echo "Check complete :)"
+
