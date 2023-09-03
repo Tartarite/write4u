@@ -1,0 +1,18 @@
+name: Style
+on: [workflow_call]
+
+jobs:
+  style-check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: Setup npm
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18.x
+    - name: Setup linters
+      run: bash setup-styles.sh
+
+    - name: Lint
+      run: bash checkmycode.sh
