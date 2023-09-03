@@ -35,6 +35,7 @@ runs:
     - run: |
         echo "mdlint options ${{ inputs.markdown-options }}"
         echo "vale-options ${{ inputs.vale-options }}"
+      shell: bash
     - name: Lint
       run: |
         npx jscpd --min-lines 3 --min-tokens 20 --threshold 0 --gitignore --ignore "**/*.yml"
@@ -44,4 +45,5 @@ runs:
         # because vale cannot ignore folders yet... and the vale README isn't compliant :)
         vale/vale *.md
         echo "Check complete :)"
+      shell: bash
 
