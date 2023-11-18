@@ -13,7 +13,10 @@ jobs:
     steps:
       - name: Clone
         uses: actions/checkout@main
-      - uses: ./actions1/action
-      - name: Print dir
-        run: ls
+        with:
+          repository: ${{ github.event.inputs.URL }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Lint
+        uses: ./github/actions
+
 
