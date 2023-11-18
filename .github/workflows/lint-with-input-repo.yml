@@ -19,6 +19,8 @@ jobs:
         with:
           repository: ${{ github.event.inputs.URL }}
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Print known words file
+        run: echo ${{github.event.inputs.URL}}
       - name: Lint
         uses: RaPaLearning/write4u@main
         with:
