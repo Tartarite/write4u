@@ -6,6 +6,9 @@ on:
       URL:
         description: 'Repository url (org/repo)'
         required: true
+      known-words:
+        description: 'Filename with known spellings'
+        required: false
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -18,5 +21,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Lint
         uses: RaPaLearning/write4u@main
+        with:
+          known-words: ${{github.event.inputs.URL}}
 
 
