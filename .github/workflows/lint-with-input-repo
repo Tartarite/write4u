@@ -1,0 +1,22 @@
+name: Lint inputted repo
+
+on:
+  workflow_dispatch:
+    inputs:
+      URL:
+        description: 'Repository url (org/repo)'
+        required: true
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Clone
+        uses: actions/checkout@main
+        with:
+          repository: ${{ github.event.inputs.URL }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Lint
+        uses: RaPaLearning/write4u@main
+
+
