@@ -1,0 +1,22 @@
+name: Lint inputted url
+
+on:
+  workflow_dispatch:
+    inputs:
+      URL:
+        description: 'Repository url'
+        required: true
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Clone
+        uses: actions/checkout@main
+        with:
+          repository: ${{ github.event.inputs.URL }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Lint
+        run: bash action.yml
+
+
