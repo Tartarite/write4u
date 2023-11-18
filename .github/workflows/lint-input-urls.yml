@@ -17,6 +17,6 @@ jobs:
           repository: ${{ github.event.inputs.URL }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Lint
-        run: bash action.yml
+        uses: ./action.yml
 
 
