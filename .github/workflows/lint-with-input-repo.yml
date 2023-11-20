@@ -12,6 +12,7 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    container: node:18
     
     steps:
       - name: Clone
