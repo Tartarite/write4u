@@ -1,4 +1,4 @@
-name: Lint inputted repo
+name: Lint by inputting a repo url
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    
+    container: tartarite/repo4
     steps:
       - name: Clone
         uses: actions/checkout@main
@@ -20,8 +20,9 @@ jobs:
           repository: ${{ github.event.inputs.URL }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Lint
-        uses: RaPaLearning/write4u@main
+        uses: Tartarite/write4u@docker-implementation
         with:
           known-words: ${{github.event.inputs.known-words}}
+
 
 
