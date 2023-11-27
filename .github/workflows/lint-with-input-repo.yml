@@ -20,7 +20,7 @@ jobs:
           repository: ${{ github.event.inputs.URL }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Lint
-        uses: Tartarite/write4u@docker-implementation
+        uses: Tartarite/write4u@main
         with:
           known-words: ${{github.event.inputs.known-words}}
 
